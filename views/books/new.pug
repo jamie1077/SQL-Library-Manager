@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  h1= title
+
+  form(action="/books", method="post")
+    div.o-form-group
+      label(for="title") Title:
+      input(type="text", name="title" value=book.title).o-form-control
+    div.o-form-group
+      label(for="author") Author:
+      input(type="text", name="author" value=book.author).o-form-control
+    div.o-form-group
+      label(for="genre") Genre:
+      input(type="text", name="genre" value=book.genre).o-form-control
+    div.o-form-group
+      label(for="year") Year:
+      input(type="text", name="year" value=book.year).o-form-control
+    div.o-btn-container
+      a(href="/books") Cancel
+      button(type="submit").o-btn Create new book

@@ -4,5 +4,77 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #052b3a;
 }
+
+.o-btn{
+  position: relative;
+    display: inline-flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    border-radius: 1.5rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    line-height: 1.5;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: 400;
+    flex-wrap: nowrap;
+    background-color: #444;
+    color: white;
+}
+
+form{
+  max-width: 300px;
+}
+
+.o-form-group{
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.o-form-control{
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.5rem;
+}
+
+.o-btn-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+table {
+  max-width: 600px;
+  border-collapse: collapse;
+  background-color: var(--brand-light);
+}
+
+table th, td {
+    text-align: left;
+    padding: 1rem;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #ccc;
+}
+    
+table tbody tr:nth-child(even) {
+    background-color: white;
+}
+  
+
