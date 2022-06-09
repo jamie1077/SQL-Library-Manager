@@ -23,8 +23,24 @@ a {
     padding: 0.75rem 1.5rem;
     font-weight: 400;
     flex-wrap: nowrap;
-    background-color: #444;
+}
+
+.o-btn-primary{
+  background-color: #444;
+  color: white;
+}
+.o-btn-primary:hover{
+  background-color: rgb(51, 51, 51);
+  color: white;
+}
+
+.o-btn-danger{
+    background-color: rgb(194, 3, 3);
     color: white;
+}
+.o-btn-danger:hover{
+  background-color: rgb(151, 3, 3);
+  color: white;
 }
 
 form{
@@ -76,5 +92,10 @@ table tbody tr:nth-child(odd) {
 table tbody tr:nth-child(even) {
     background-color: white;
 }
-  
+
+.book-delete{
+  border-top: 1px solid #444;
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
 

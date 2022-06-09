@@ -50,27 +50,22 @@ const port = 3000;
 
 // catch 404 and forward to error handler
 app.use( (req, res, next) => {
-  const err = new createError.NotFound()
-  next(err)
+  next(createError(404));
 });
 
-// error handler
+// global error handler
 app.use( (err, req, res, next) => {
-  if(err){
-    console.log(err)
-    if(err.status === 404) {
-      res.render("page-not-found", {err});
-    }else{
-      // set locals, only providing error in development
-      res.locals.message = err.message;
-      res.locals.error = req.app.get('env') === 'development' ? err : {};
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-      // render the error page
-      res.status(err.status || 500);
-      res.render("error", {err});
-    }
+  // render the error page
+  if (err.status === 404) {
+    res.status(404).render('page-not-found', { err, title: "Page Not Found" });
+  }else{
+    res.status(err.status || 500);
+    res.render('error');
   }
-
 });
 
 

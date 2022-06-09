@@ -16,7 +16,7 @@ function asyncHandler(cb){
 
 /* GET all books listings */
 router.get('/', asyncHandler(async (req, res) => {
-  const books = await Book.findAll();
+  const books = await Book.findAll({ order: [["title", "ASC"]] });
   res.render("index", { books, title: "Books" });
 }));
 
@@ -41,35 +41,57 @@ router.post('/', asyncHandler(async (req, res) => {
   }
 }));
 
-/* GET individual book form page. */
-router.get('/:id', asyncHandler(async (req, res) => {
+
+/* Edit book form. */
+router.get('/:id', asyncHandler(async(req, res) => {
   const book = await Book.findByPk(req.params.id);
   if(book) {
-    res.render("books/update", { book, title: book.title });  
+    res.render("books/update", { book, title: "Update Book" });      
   } else {
     res.sendStatus(404);
   }
 }));
 
 /* Update a book. */
-router.post('/:id/edit', asyncHandler(async (req, res) => {
+router.post('/:id', asyncHandler(async (req, res) => {
   let book;
   try {
     book = await Book.findByPk(req.params.id);
     if(book) {
       await book.update(req.body);
-      res.redirect("/books/" + book.id); 
+      res.redirect("/books/"); 
     } else {
       res.sendStatus(404);
     }
   } catch (error) {
     if(error.name === "SequelizeValidationError") {
       book = await Book.build(req.body);
-      book.id = req.params.id; // make sure correct book gets updated
+      book.id = req.params.id; // make sure correct article gets updated
       res.render("books/update", { book, errors: error.errors, title: "Update Book" })
     } else {
       throw error;
     }
+  }
+}));
+
+/* Delete book form. */
+router.get('/:id/delete', asyncHandler(async (req, res) => {
+  const book = await Book.findByPk(req.params.id);
+  if(book) {
+    res.render("books/delete", { book, title: "Delete Book" });
+  } else {
+    res.sendStatus(404);
+  }
+}));
+
+/* Delete individual book. */
+router.post('/:id/delete', asyncHandler(async (req ,res) => {
+  const book = await Book.findByPk(req.params.id);
+  if(book) {
+    await book.destroy();
+    res.redirect("/books");
+  } else {
+    res.sendStatus(404);
   }
 }));
 
