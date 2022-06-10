@@ -4,7 +4,7 @@ body {
 }
 
 a {
-  color: #052b3a;
+  color: #440465;
 }
 
 .o-btn{
@@ -26,11 +26,11 @@ a {
 }
 
 .o-btn-primary{
-  background-color: #444;
+  background-color: #690a9a;
   color: white;
 }
 .o-btn-primary:hover{
-  background-color: rgb(51, 51, 51);
+  background-color: #440465;
   color: white;
 }
 
@@ -67,17 +67,62 @@ form{
     border-radius: 0.5rem;
 }
 
+.o-form-control:hover, .o-form-control:focus, .o-form-control:active{
+  border-color: #440465;
+  outline: none;
+}
+
 .o-btn-container{
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.o-flex-group{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 600px;
+  margin-bottom: 2rem;
+}
+
+.o-input-group{
+  display: flex;
+}
+
+.o-input-group .o-form-control{
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 0;
+}
+
+.o-input-group .o-btn{
+  background-color: #690a9a;
+  color: white;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.o-input-group .o-btn:hover{
+  background-color: #440465;
+}
+
+
+.o-input-group .o-btn svg{
+  width: 20px;
+  fill: white;
+}
 
 table {
   max-width: 600px;
   border-collapse: collapse;
   background-color: var(--brand-light);
+}
+
+table th{
+  background-color: #444;
+  color: white;
 }
 
 table th, td {
@@ -99,3 +144,16 @@ table tbody tr:nth-child(even) {
   margin-top: 2rem;
 }
 
+.error{
+  color:rgb(194, 3, 3)
+}
+
+ul.error{
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+ul.error li{
+  margin-bottom: 0.5rem;
+}
