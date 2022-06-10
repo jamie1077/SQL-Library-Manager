@@ -50,7 +50,7 @@ const port = 3000;
 
 // catch 404 and forward to error handler
 app.use( (req, res, next) => {
-  next(createError(404));
+  next(createError(404, 'That page does not exist!'));
 });
 
 // global error handler
@@ -63,8 +63,7 @@ app.use( (err, req, res, next) => {
   if (err.status === 404) {
     res.status(404).render('page-not-found', { err, title: "Page Not Found" });
   }else{
-    res.status(err.status || 500);
-    res.render('error');
+    res.status(err.status || 500).render('error', {err});
   }
 });
 
