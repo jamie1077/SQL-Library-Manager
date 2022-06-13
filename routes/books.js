@@ -22,11 +22,11 @@ router.get('/', asyncHandler(async (req, res) => {
 
 /* Create a new book. */
 router.get('/new', (req, res) => {
-  res.render("books/new", { book: {}, title: "New Book" });
+  res.render("books/new-book", { book: {}, title: "New Book" });
 });
 
 /* POST create book. */
-router.post('/', asyncHandler(async (req, res) => {
+router.post('/new', asyncHandler(async (req, res) => {
   let book;
   try {
     book = await Book.create(req.body);
@@ -34,7 +34,7 @@ router.post('/', asyncHandler(async (req, res) => {
   } catch (error) {
     if(error.name === "SequelizeValidationError") { // checking the error
       book = await Book.build(req.body);
-      res.render("books/new", { book, errors: error.errors, title: "New Book" })
+      res.render("books/new-book", { book, errors: error.errors, title: "New Book" })
     } else {
       throw error; // error caught in the asyncHandler's catch block
     }  
@@ -46,7 +46,7 @@ router.post('/', asyncHandler(async (req, res) => {
 router.get('/:id', asyncHandler(async(req, res, next) => {
   const book = await Book.findByPk(req.params.id);
   if(book) {
-    res.render("books/update", { book, title: "Update Book" });      
+    res.render("books/update-book", { book, title: "Update Book" });      
   } else {
     const err = new Error("book not found");
     err.status = 404;
@@ -61,7 +61,7 @@ router.post('/:id', asyncHandler(async (req, res, next) => {
     book = await Book.findByPk(req.params.id);
     if(book) {
       await book.update(req.body);
-      res.redirect("/books/"); 
+      res.redirect("/books"); 
     } else {
       const err = new Error("book not found");
       err.status = 404;
@@ -71,7 +71,7 @@ router.post('/:id', asyncHandler(async (req, res, next) => {
     if(error.name === "SequelizeValidationError") {
       book = await Book.build(req.body);
       book.id = req.params.id; // make sure correct book gets updated
-      res.render("books/update", { book, errors: error.errors, title: "Update Book" })
+      res.render("books/update-book", { book, errors: error.errors, title: "Update Book" })
     } else {
       throw error;
     }

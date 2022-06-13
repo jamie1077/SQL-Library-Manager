@@ -7,7 +7,7 @@ block content
     ul.error    
         each error in errors 
             li= error.message 
-  form(action="/books", method="post")
+  form(action="/books/new", method="post")
     div.o-form-group
       label(for="title") Title:
       input(type="text" id="title" name="title" value=book.title).o-form-control
